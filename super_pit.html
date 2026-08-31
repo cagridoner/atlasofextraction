@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Pit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #000; 
+            overflow: hidden; 
+        }
+        #map { 
+            height: 100%; 
+            width: 100%; 
+            background-color: #000;
+        }
+        /* Haritanın sol üst vs. kısımlarındaki tüm varsayılan butonları GİZLER */
+        .leaflet-control-container { display: none !important; }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Haritayı Super Pit koordinatlarıyla başlatıyoruz (Bütün arayüz kapalı)
+        var map = L.map('map', {
+            zoomControl: false,
+            attributionControl: false
+        }).setView([-30.7746, 121.5006], 13); // Zoom seviyesi: 13 (Super Pit için ideal)
+
+        // Yüksek Çözünürlüklü Esri Uydu Görüntüleri
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            maxZoom: 18
+        }).addTo(map);
+    </script>
+</body>
+</html>
